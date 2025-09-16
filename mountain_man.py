@@ -130,7 +130,7 @@ with col_ts:
     df_rev_melt['Source'] = df_rev_melt['Source'].map({'rev_lager_launch': 'Lager Revenue', 'rev_light_launch': 'Light Revenue'})
     fig_revenue = px.bar(df_rev_melt, x='index', y='Revenue', color='Source', title='Revenue Mix (Launch Scenario)', labels={'index': 'Year'}, color_discrete_map={'Lager Revenue': '#8B0000', 'Light Revenue': '#FFD700'})
     fig_revenue.add_trace(go.Scatter(x=df_chart.index, y=df_chart['rev_dn'], mode='lines', name='Revenue (Do Nothing)', line=dict(color='grey', dash='dot')))
-    fig_revenue.update_layout(barmode='stack', legend=dict(yanchor="top", y=0.98, xanchor="left", x=0.01))
+    fig_revenue.update_layout(barmode='stack', legend=dict(orientation="h", yanchor="bottom", y=-0.3, xanchor="center", x=0.5))
     st.plotly_chart(fig_revenue, use_container_width=True)
 
 with col_sens:
@@ -151,4 +151,5 @@ with col_sens:
     fig_sensitivity.add_hline(y=0, line_dash="dash", line_color="red", annotation_text="NPV Break-Even")
     fig_sensitivity.add_vline(x=cannibalization_rate, line_dash="dash", line_color="black", annotation_text="Current")
     fig_sensitivity.update_traces(hovertemplate="Cannibalization: %{x:.1f}%<br>Incremental NPV: %{y:$,.0f}")
+
     st.plotly_chart(fig_sensitivity, use_container_width=True)
