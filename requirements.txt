@@ -2,5 +2,4 @@ streamlit
 pandas
 numpy
 numpy_financial
-plotly.express
-plotly.graph_objects
+plotly
