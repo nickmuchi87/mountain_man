@@ -123,7 +123,7 @@ with col_ts:
     df_op_melt = df_chart[['op_profit_dn', 'op_profit_launch']].reset_index().melt(id_vars='index', var_name='Scenario', value_name='Operating Profit')
     df_op_melt['Scenario'] = df_op_melt['Scenario'].map({'op_profit_dn': 'Do Nothing', 'op_profit_launch': 'Launch Light'})
     fig_op_profit = px.line(df_op_melt, x='index', y='Operating Profit', color='Scenario', markers=True, title='Operating Profit Projections (2005-2010)', labels={'index': 'Year'}, color_discrete_map={'Do Nothing': 'orange', 'Launch Light': 'royalblue'})
-    fig_op_profit.update_layout(legend=dict(yanchor="bottom", y=-0.3, xanchor="center", x=0.5))
+    fig_op_profit.update_layout(legend=dict(orientation="h", yanchor="bottom", y=-0.3, xanchor="center", x=0.5))
     
     st.plotly_chart(fig_op_profit, use_container_width=True)
 
@@ -154,4 +154,5 @@ with col_sens:
     fig_sensitivity.update_traces(hovertemplate="Cannibalization: %{x:.1f}%<br>Incremental NPV: %{y:$,.0f}")
 
     st.plotly_chart(fig_sensitivity, use_container_width=True)
+
 
